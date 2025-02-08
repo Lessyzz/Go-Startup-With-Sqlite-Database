@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Starter Project</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            position: relative;
+            overflow-y: hidden;
+        }
+        .button {
+            display: inline-block;
+            width: 200px;
+            padding: 12px 20px;
+            margin: 10px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+            background: linear-gradient(135deg, #6d1f00, #2b0b00);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(255, 69, 0, 0.5);
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+        .button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(255, 69, 0, 0.7);
+        }
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 16px;
+            color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <a href="/account/register" class="button" style="margin-top: -70px;">Register</a>
+    <a href="/account/login" class="button">Login</a>
+    
+    <div class="footer"><b>Made by Lessy</b></div>
+</body>
+</html>

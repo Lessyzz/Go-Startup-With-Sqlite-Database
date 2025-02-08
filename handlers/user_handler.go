@@ -10,6 +10,10 @@ import (
 
 // GET Requests
 
+func Index_GET(c *fiber.Ctx) error {
+	return c.SendFile("./views/index.html")
+}
+
 func Register_GET(c *fiber.Ctx) error {
 	return c.SendFile("./views/register.html")
 }

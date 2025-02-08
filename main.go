@@ -19,6 +19,7 @@ func SetupSwagger(app *fiber.App) {
 }
 
 func SetupRoutes(app *fiber.App) {
+	routes.SetupIndexRoute(app)
 	routes.SetupAccountRoutes(app)
 }
 
