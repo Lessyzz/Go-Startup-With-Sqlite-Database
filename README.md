@@ -9,4 +9,6 @@ Put into the C:/Users.
 
 Add to PATH.
 
-Write this to command line: set CGO_ENABLED=1
+Write this to command line: 
+
+set CGO_ENABLED=1
