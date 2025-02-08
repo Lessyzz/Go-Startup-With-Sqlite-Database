@@ -1,5 +1,4 @@
 # Go Startup With Sqlite Database
- Go Startup project with Sqlite Database
 
 CGO should be installed for Windows.
 
