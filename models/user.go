@@ -12,7 +12,18 @@ type User struct {
 	Password string
 }
 
+type UserRegisterDTO struct {
+	Username string
+	Email    string
+	Password string
+}
+
+type UserLoginDTO struct {
+	Username string
+	Password string
+}
+
 func (u *User) BeforeCreate(tx *gorm.DB) (err error) {
-	u.ID = uuid.New().String() // **UUID'yi string olarak ata**
+	u.ID = uuid.New().String() // UUID
 	return
 }

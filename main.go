@@ -1,15 +1,15 @@
 package main
 
 import (
-	"fiber-api/database"
-	"fiber-api/models"
-	"fiber-api/routes"
-	"fiber-api/tokenization"
 	"fmt"
+	"go-starter/database"
+	"go-starter/models"
+	"go-starter/routes"
+	"go-starter/tokenization"
 
 	"github.com/gofiber/fiber/v2"
 
-	_ "fiber-api/docs"
+	_ "go-starter/docs"
 
 	fiberSwagger "github.com/swaggo/fiber-swagger"
 )

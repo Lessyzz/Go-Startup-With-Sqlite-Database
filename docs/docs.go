@@ -14,7 +14,93 @@ const docTemplate = `{
     },
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
-    "paths": {}
+    "paths": {
+        "/": {
+            "get": {
+                "tags": [
+                    "Index Get"
+                ],
+                "responses": {}
+            }
+        },
+        "/account/login": {
+            "get": {
+                "tags": [
+                    "Account Get"
+                ],
+                "responses": {}
+            },
+            "post": {
+                "tags": [
+                    "Account Post"
+                ],
+                "parameters": [
+                    {
+                        "description": "User Information",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.UserLoginDTO"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/account/register": {
+            "get": {
+                "tags": [
+                    "Account Get"
+                ],
+                "responses": {}
+            },
+            "post": {
+                "tags": [
+                    "Account Post"
+                ],
+                "parameters": [
+                    {
+                        "description": "User Information",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.UserRegisterDTO"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        }
+    },
+    "definitions": {
+        "models.UserLoginDTO": {
+            "type": "object",
+            "properties": {
+                "password": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.UserRegisterDTO": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        }
+    }
 }`
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it

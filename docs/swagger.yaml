@@ -1,4 +1,58 @@
+definitions:
+  models.UserLoginDTO:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  models.UserRegisterDTO:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+    type: object
 info:
   contact: {}
-paths: {}
+paths:
+  /:
+    get:
+      responses: {}
+      tags:
+      - Index Get
+  /account/login:
+    get:
+      responses: {}
+      tags:
+      - Account Get
+    post:
+      parameters:
+      - description: User Information
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserLoginDTO'
+      responses: {}
+      tags:
+      - Account Post
+  /account/register:
+    get:
+      responses: {}
+      tags:
+      - Account Get
+    post:
+      parameters:
+      - description: User Information
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserRegisterDTO'
+      responses: {}
+      tags:
+      - Account Post
 swagger: "2.0"

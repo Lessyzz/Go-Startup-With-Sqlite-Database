@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"fiber-api/database"
-	"fiber-api/models"
+	"go-starter/database"
+	"go-starter/models"
 
 	"github.com/gofiber/fiber/v2"
 	"gorm.io/gorm"
@@ -10,27 +10,32 @@ import (
 
 // GET Requests
 
-func Index_GET(c *fiber.Ctx) error {
-	return c.SendFile("./views/index.html")
-}
-
+// @Tags Account Get
+// @Router /account/register [get]
 func Register_GET(c *fiber.Ctx) error {
 	return c.SendFile("./views/register.html")
 }
 
+// @Tags Account Get
+// @Router /account/login [get]
 func Login_GET(c *fiber.Ctx) error {
 	return c.SendFile("./views/login.html")
 }
 
 // POST Requests
 
+// @Tags Account Post
+// @Param user body models.UserRegisterDTO true "User Information"
+// @Router /account/register [post]
 func Register_POST(c *fiber.Ctx) error {
-	username := c.FormValue("username")
-	email := c.FormValue("email")
-	password := c.FormValue("password")
+	var registerDTO models.UserRegisterDTO
+
+	if err := c.BodyParser(&registerDTO); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid request"})
+	}
 
 	var existingUser models.User
-	result := database.DB.Where("username = ? OR email = ?", username, email).First(&existingUser)
+	result := database.DB.Where("username = ? OR email = ?", registerDTO.Username, registerDTO.Email).First(&existingUser)
 
 	if result.Error == nil && existingUser.ID != "" {
 		return c.Status(fiber.StatusConflict).JSON(fiber.Map{"error": "User already exists"})
@@ -39,9 +44,9 @@ func Register_POST(c *fiber.Ctx) error {
 	}
 
 	newUser := models.User{
-		Username: username,
-		Email:    email,
-		Password: string(password),
+		Username: registerDTO.Username,
+		Email:    registerDTO.Email,
+		Password: string(registerDTO.Password),
 	}
 
 	database.DB.Create(&newUser)
@@ -53,18 +58,24 @@ func Register_POST(c *fiber.Ctx) error {
 	})
 }
 
+// @Tags Account Post
+// @Param user body models.UserLoginDTO true "User Information"
+// @Router /account/login [post]
 func Login_POST(c *fiber.Ctx) error {
-	username := c.FormValue("username")
-	password := c.FormValue("password")
+	var loginDTO models.UserLoginDTO
+
+	if err := c.BodyParser(&loginDTO); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid request"})
+	}
 
 	var user models.User
-	result := database.DB.Where("username = ?", username).First(&user)
+	result := database.DB.Where("username = ?", loginDTO.Username).First(&user)
 
 	if result.Error != nil {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "User not found"})
 	}
 
-	if user.Password != password {
+	if loginDTO.Password != user.Password {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "Wrong password"})
 	}
 

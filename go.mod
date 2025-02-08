@@ -1,4 +1,4 @@
-module fiber-api
+module go-starter
 
 go 1.23.6
 
@@ -10,7 +10,10 @@ require (
 	gorm.io/gorm v1.25.12
 )
 
-require gorm.io/driver/sqlite v1.5.7
+require (
+	github.com/google/uuid v1.6.0
+	gorm.io/driver/sqlite v1.5.7
+)
 
 require (
 	github.com/KyleBanks/depth v1.2.1 // indirect
@@ -19,7 +22,6 @@ require (
 	github.com/go-openapi/jsonreference v0.21.0 // indirect
 	github.com/go-openapi/spec v0.21.0 // indirect
 	github.com/go-openapi/swag v0.23.0 // indirect
-	github.com/google/uuid v1.6.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
